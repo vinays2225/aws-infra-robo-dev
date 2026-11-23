@@ -7,15 +7,15 @@ variable "environment" {
 }
 
 variable "sg_names" {
-type = list
+  type = list(any)
   default = [
-    "mongodb","redis","mysql","rabbitmq",
-    "catalogue","user","cart","shipping","payment",
+    "mongodb", "redis", "mysql", "rabbitmq",
+    "catalogue", "user", "cart", "shipping", "payment",
     "backend_alb",
-    
+
     "frontend",
     "frontend_alb",
 
-    "bastion","vpn"
+    "bastion", "vpn"
   ]
 }
