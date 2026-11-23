@@ -37,7 +37,7 @@ data "aws_ssm_parameter" "rabbitmq_sg_id" {
 
 data "aws_route53_zone" "route53_rec" {
   name         = "yanvisol.online"
-  private_zone = true
+  #private_zone = true
 }
 
 data "aws_caller_identity" "current" {}
