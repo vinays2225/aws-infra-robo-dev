@@ -3,7 +3,10 @@ resource "aws_instance" "mongodb" {
   instance_type = "t3.micro"
   subnet_id     = local.subnet_database_id
   vpc_security_group_ids = [local.mongodb_sg_id]
-  tags = local.common_tags
+  tags =merge( local.common_tags,
+  {
+    Name="${var.project}-${var.environment}-mongodb"
+    })
 }
 
 resource "terraform_data" "monogodb" {
@@ -47,7 +50,10 @@ resource "aws_instance" "redis" {
   instance_type = "t3.micro"
   subnet_id     = local.subnet_database_id
   vpc_security_group_ids = [local.redis_sg_id]
-  tags = local.common_tags
+  tags = merge( local.common_tags,
+  {
+    Name="${var.project}-${var.environment}-redis"
+    })
 }
 
 resource "terraform_data" "redis" {
@@ -92,7 +98,10 @@ resource "aws_instance" "mysql" {
   subnet_id     = local.subnet_database_id
   vpc_security_group_ids = [local.mysql_sg_id]
   iam_instance_profile = aws_iam_instance_profile.mysql_profile.name
-  tags = local.common_tags
+  tags = merge( local.common_tags,
+  {
+    Name="${var.project}-${var.environment}-mysql"
+    })
 }
 
 resource "terraform_data" "mysql" {
@@ -136,7 +145,10 @@ resource "aws_instance" "rabbitmq" {
   subnet_id     = local.subnet_database_id
   vpc_security_group_ids = [local.rabbitmq_sg_id]
   iam_instance_profile = aws_iam_instance_profile.rabbitq_profile.name
-  tags = local.common_tags
+  tags = merge( local.common_tags,
+  {
+    Name="${var.project}-${var.environment}-rabbitmq"
+    })
 }
 
 resource "terraform_data" "rabbitmq" {
