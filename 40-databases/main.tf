@@ -20,7 +20,12 @@ resource "terraform_data" "monogodb" {
     port = 22
   }
 
-
+provisioner "remote-exec" {
+    inline = [ 
+      "echo '**************** remove old bootstrap file****************'",
+      "rm /tmp/bootstrap.sh"  
+    ]
+  }
 
 # Copies local file to the remote EC2 instance
   provisioner "file" {
