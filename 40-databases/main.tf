@@ -65,7 +65,12 @@ resource "terraform_data" "redis" {
   }
 
  
-
+provisioner "remote-exec" {
+    inline = [ 
+      "echo '**************** remove old bootstrap file****************'",
+      "rm /tmp/bootstrap.sh"  
+    ]
+  }
 # Copies local file to the remote EC2 instance
   provisioner "file" {
     source      = "${path.module}/bootstrap.sh"
@@ -105,7 +110,12 @@ resource "terraform_data" "mysql" {
   }
 
  
-
+provisioner "remote-exec" {
+    inline = [ 
+      "echo '**************** remove old bootstrap file****************'",
+      "rm /tmp/bootstrap.sh"  
+    ]
+  }
 # Copies local file to the remote EC2 instance
   provisioner "file" {
     source      = "${path.module}/bootstrap.sh"
