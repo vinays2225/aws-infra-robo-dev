@@ -1,18 +1,20 @@
 locals {
-    mongodb_sg_id =  data.aws_ssm_parameter.mongodb_sg_id 
-    redis_sg_id =  data.aws_ssm_parameter.redis_sg_id 
-    mysql_sg_id =  data.aws_ssm_parameter.mysql_sg_id
-    rabbitmq_sg_id =  data.aws_ssm_parameter.rabbitmq_sg_id    
-    catalogue_sg_id =  data.aws_ssm_parameter.catalogue_sg_id 
-    user_sg_id =  data.aws_ssm_parameter.user_sg_id 
-    cart_sg_id =  data.aws_ssm_parameter.cart_sg_id 
-    shipping_sg_id =  data.aws_ssm_parameter.shipping_sg_id 
-    payment_sg_id =  data.aws_ssm_parameter.payment_sg_id    
-    backend_alb_sg_id =  data.aws_ssm_parameter.backend_alb_sg_id    
-    
-    frontend_sg_id =  data.aws_ssm_parameter.frontend_sg_id    
-    frontend_alb_sg_id =  data.aws_ssm_parameter.frontend_alb_sg_id    
+  mongodb_sg_id     = data.aws_ssm_parameter.mongodb.value
+  redis_sg_id       = data.aws_ssm_parameter.redis.value
+  mysql_sg_id       = data.aws_ssm_parameter.mysql.value
+  rabbitmq_sg_id    = data.aws_ssm_parameter.rabbitmq.value
+  catalogue_sg_id   = data.aws_ssm_parameter.catalogue.value
+  user_sg_id        = data.aws_ssm_parameter.user.value
+  cart_sg_id        = data.aws_ssm_parameter.cart.value
+  shipping_sg_id    = data.aws_ssm_parameter.shipping.value
+  payment_sg_id     = data.aws_ssm_parameter.payment.value
+  backend_alb_sg_id = data.aws_ssm_parameter.backend_alb.value
 
-    bastion_sg_id =  data.aws_ssm_parameter.bastion_sg_id 
-    vpn_sg_id =  data.aws_ssm_parameter.vpn_sg_id
+  frontend_sg_id     = data.aws_ssm_parameter.frontend.value
+  frontend_alb_sg_id = data.aws_ssm_parameter.frontend_alb.value
+
+  bastion_sg_id = data.aws_ssm_parameter.bastion.value
+  vpn_sg_id     = data.aws_ssm_parameter.vpn.value
+
+  my_ip = chomp(data.http.my_ip.response_body)
 }
