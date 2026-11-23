@@ -1,5 +1,5 @@
 resource "aws_iam_role" "mysql" {
-  name = "${local.common_name}-mysql"
+  name = "${var.project}-${var.environment}-mysql"
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
@@ -17,18 +17,18 @@ resource "aws_iam_role" "mysql" {
     ]
   })
 
-  tags = merge(local.common_tags,{Name="${var.project}/${var.environment}-mysql"})
+  tags = merge(local.common_tags,{Name="${var.project}-${var.environment}-mysql"})
 }
 
 resource "aws_iam_policy" "mysql_policy" {
-  name        = "${local.common_name}-mysql"
+  name        = "${var.project}-${var.environment}-mysql"
   description = "Allows listing all parameter store"
   policy      = templatefile("${path.module}/mysql_policy.json.tftpl", {
     account_id = local.account_id
     project=var.project
     environment = var.environment
   })
-  tags = merge(local.common_tags,{Name="${var.project}/${var.environment}-mysql"})
+  tags = merge(local.common_tags,{Name="${var.project}-${var.environment}-mysql"})
 }
 
 resource "aws_iam_role_policy_attachment" "mysql_attach" {
@@ -37,13 +37,13 @@ resource "aws_iam_role_policy_attachment" "mysql_attach" {
 }
 
 resource "aws_iam_instance_profile" "mysql_profile" {
-  name = "${local.common_name}-mysql"
+  name = "${var.project}-${var.environment}-mysql"
   role = aws_iam_role.mysql.name
 }
 
 
 resource "aws_iam_role" "rabbitmq" {
-  name = "${local.common_name}-rabbitmq"
+  name = "${var.project}-${var.environment}-rabbitmq"
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
@@ -61,18 +61,18 @@ resource "aws_iam_role" "rabbitmq" {
     ]
   })
 
-  tags = merge(local.common_tags,{Name="${var.project}/${var.environment}-rabbitmq"})
+  tags = merge(local.common_tags,{Name="${var.project}-${var.environment}-rabbitmq"})
 }
 
 resource "aws_iam_policy" "rabbitmq_policy" {
-  name        = "${local.common_name}-rabbitmq"
+  name        = "${var.project}-${var.environment}-rabbitmq"
   description = "Allows listing all parameter store"
   policy      = templatefile("${path.module}/rabbitmq_policy.json.tftpl", {
     account_id = local.account_id
     project=var.project
     environment = var.environment
   })
-  tags = merge(local.common_tags,{Name="${var.project}/${var.environment}-rabbitmq"})
+  tags = merge(local.common_tags,{Name="${var.project}-${var.environment}-rabbitmq"})
 }
 
 resource "aws_iam_role_policy_attachment" "rabbitmql_attach" {
@@ -81,6 +81,6 @@ resource "aws_iam_role_policy_attachment" "rabbitmql_attach" {
 }
 
 resource "aws_iam_instance_profile" "rabbitq_profile" {
-  name = "${local.common_name}-rabbitmq"
+  name = "${var.project}-${var.environment}-rabbitmq"
   role = aws_iam_role.rabbitmq.name
 }
