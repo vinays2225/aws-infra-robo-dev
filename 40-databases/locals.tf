@@ -1,5 +1,5 @@
 locals{
-    common_name = "${var.project}/${var.environment}"
+    common_name = "${var.project}-${var.environment}"
     domain_name="yanvisol.online"
     zone_id = data.aws_route53_zone.route53_rec.zone_id
     ami = data.aws_ami.joindevops.id
