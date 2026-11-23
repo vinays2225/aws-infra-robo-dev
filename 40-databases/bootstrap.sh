@@ -1,6 +1,10 @@
 #!/bin/bash
 component=$1
 env=$2
+echo "*************************************"
+echo $env 
+echo $component
+echo "*************************************"
 sudo dnf install ansible -y
 cd /home/ec2-user
 git clone https://github.com/vinays2225/ansible-robo-v3-terraform.git
