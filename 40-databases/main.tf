@@ -20,7 +20,9 @@ resource "terraform_data" "monogodb" {
     port = 22
   }
 
- 
+ provisioner "local-exec" {
+   command = "echo Path of module : ${path.module}"
+ }
 
 # Copies local file to the remote EC2 instance
   provisioner "file" {
