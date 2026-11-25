@@ -8,7 +8,7 @@ terraform{
 
     backend "s3" {
       bucket = "tfvars-demo-dev"
-      key = "mangodb.tfvars"
+      key = "database.tfvars"
       encrypt = true
       use_lockfile = true
       region = "us-east-1"
