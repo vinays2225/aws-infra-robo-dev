@@ -25,7 +25,7 @@ resource "aws_iam_policy" "mysql_policy" {
   description = "Allows listing all parameter store"
   policy      = templatefile("${path.module}/mysql_policy.json.tftpl", {
     account_id = local.account_id
-    project=var.project
+    project = var.project
     environment = var.environment
   })
   tags = merge(local.common_tags,{Name="${var.project}-${var.environment}-mysql"})
